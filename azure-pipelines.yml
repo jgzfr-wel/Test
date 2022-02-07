@@ -10,12 +10,12 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host Starting the synchronization process
-      mkdir copyrepo
+      mkdir syncrepo
       $sourceURL = "https://${env:GITHUBTOKEN}@${env:GITHUBREPOPATH}"
       $destURL = "https://${env:DEVOPSTOKEN}@${env:DEVOPSREPOPATH}"
-      Set-Location "$(Build.SourcesDirectory)/copyrepo"
+      Set-Location "$(Build.SourcesDirectory)/syncrepo"
       git clone --mirror $sourceURL
-      Set-Location "$(Build.SourcesDirectory)/copyrepo/${env:REPONAME}/"
+      Set-Location "$(Build.SourcesDirectory)/syncrepo/${env:REPONAME}/"
       Write-Host "*****Git removing remote origin****"
       git remote rm origin
       Write-Output "*****Git remote add****"
